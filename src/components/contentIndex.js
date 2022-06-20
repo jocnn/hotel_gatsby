@@ -1,29 +1,34 @@
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const ContentIndex = () => {
 
   const query = useStaticQuery(graphql`
     query {
-      allDatoCmsPagina(filter: {slug: {eq: "index"}}) {
+      allDatoCmsPagina(
+        filter: { slug: { eq: "index" } }
+      ) {
         nodes {
           titulo
           contenido
           imagen {
-            fluid {
-              ...GatsbyDatoCmsFluid
-            }
+            gatsbyImageData
           }
         }
       }
     }
   `)
 
-  console.log(query)
+  const { titulo, contenido, imagen } = query.allDatoCmsPagina.nodes[0]
 
   return (
     <>
-      <h2>Título de Página</h2>
+      <h2>{titulo}</h2>
+      <div>
+        <p>{contenido}</p>
+        <GatsbyImage image={imagen.gatsbyImageData} alt="imagen index" />
+      </div>
     </>
   )
 }
