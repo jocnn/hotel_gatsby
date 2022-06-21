@@ -11,7 +11,7 @@ const Layout = ({children}) => {
   
   const seo = useSeo()
   
-  const { siteName, titleSuffix, fallbackSeo: { description, title, image } } = seo
+  const { siteName, fallbackSeo: { description, title } } = seo
 
   return (
     <>
