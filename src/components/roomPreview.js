@@ -1,16 +1,46 @@
 import * as React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { css } from "@emotion/react"
+import styled from "@emotion/styled"
+import { Link } from "gatsby"
+
+const Boton = styled(Link)`
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(44,62,80,.85);
+  width: 100%;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+`
 
 const RoomPreview = ({ habitacion }) => {
 
   const { titulo, contenido, imagen, slug } = habitacion
 
   return (
-    <div>
-      <div>
-        <GatsbyImage image={imagen.gatsbyImageData} alt="imagen habitacion" />
+    <div
+      css={css`
+        border: 1px solid #e1e1e1;
+        margin-bottom: 2rem;
+      `}
+    >
+      <GatsbyImage image={imagen.gatsbyImageData} alt="imagen habitacion" />
+      <div
+        css={css`
+          padding: 3rem;
+        `}
+      >
         <h3>{titulo}</h3>
-        <p>{contenido}</p>
+        <p
+          css={css`
+            white-space: pre-wrap;
+          `}
+        >{contenido}</p>
+        <Boton to={slug}>Ver Habitación</Boton>
       </div>
     </div>
   )
