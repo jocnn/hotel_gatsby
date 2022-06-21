@@ -1,7 +1,15 @@
 import * as React from "react"
 import { css } from "@emotion/react"
+import styled from "@emotion/styled"
+import { Link } from "gatsby"
 
 import Navigation from "./nav"
+
+const EnlaceHome = styled(Link)`
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+`
 
 const Header = () => {
   return (
@@ -23,15 +31,14 @@ const Header = () => {
           }
         `}
       >
-        <h1
-          css={css`
-            color: #fff;
-            text-align: center;
-          `}
+        <EnlaceHome
+          to='/'
         >
-          Hotel Gatsby
-        </h1>
-
+          <h1>
+            Hotel Gatsby
+          </h1>
+        </EnlaceHome>
+        
         <Navigation />
       </div>
     </header>
