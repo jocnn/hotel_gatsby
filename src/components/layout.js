@@ -5,7 +5,14 @@ import { Global, css } from "@emotion/react"
 import Header from "./header"
 import Footer from "./footer"
 
+import useSeo from "../hooks/useSeo"
+
 const Layout = ({children}) => {
+  
+  const seo = useSeo()
+  
+  const { siteName, titleSuffix, fallbackSeo: { description, title, image } } = seo
+
   return (
     <>
       <Global 
@@ -41,6 +48,7 @@ const Layout = ({children}) => {
         `}
       />
       <Helmet>
+        <meta name="description" content={description} />
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" 
@@ -51,14 +59,14 @@ const Layout = ({children}) => {
         <link 
           href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet" />
-        <title>Gatsby Hotel</title>
+        <title>{title}</title>
       </Helmet>
 
       <Header />
       
       {children}
 
-      <Footer />
+      <Footer siteName={siteName} />
     </>
   )
 }
